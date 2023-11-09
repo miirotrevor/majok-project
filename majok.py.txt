@@ -1,0 +1,80 @@
+class Ingredient:
+    def __init__(self, name, quantity, unit):
+        self.name = name
+        self.quantity = quantity
+        self.unit = unit
+
+    def __str__(self):
+        return f"{self.quantity} {self.unit} of {self.name}"
+
+class RecipeStep:
+    def __init__(self, description):
+        self.description = description
+
+    def __str__(self):
+        return self.description
+
+class Recipe:
+    def __init__(self, name):
+        self.name = name
+        self.ingredients = []
+        self.steps = []
+
+    def add_ingredient(self, ingredient):
+        self.ingredients.append(ingredient)
+
+    def add_step(self, step):
+        self.steps.append(step)
+
+    def __str__(self):
+        recipe_str = f"Recipe: {self.name}\n"
+        recipe_str += "Ingredients:\n"
+        for ingredient in self.ingredients:
+            recipe_str += f"- {ingredient}\n"
+        recipe_str += "Steps:\n"
+        for i, step in enumerate(self.steps, start=1):
+            recipe_str += f"{i}. {step}\n"
+        return recipe_str
+
+class Cookbook:
+    def __init__(self):
+        self.recipes = []
+
+    def add_recipe(self, recipe):
+        self.recipes.append(recipe)
+
+    def __str__(self):
+        cookbook_str = "Cookbook\n"
+        for i, recipe in enumerate(self.recipes, start=1):
+            cookbook_str += f"{i}. {recipe.name}\n"
+        return cookbook_str
+
+# Example usage:
+
+# Create ingredients
+ingredient1 = Ingredient("Chicken", 2, "pounds")
+ingredient2 = Ingredient("Onion", 1, "chopped")
+ingredient3 = Ingredient("Garlic", 3, "cloves")
+ingredient4 = Ingredient("Salt", 1, "teaspoon")
+
+# Create recipe steps
+step1 = RecipeStep("Step 1: Season the chicken with salt.")
+step2 = RecipeStep("Step 2: Sauté the chopped onion and garlic in a pan.")
+step3 = RecipeStep("Step 3: Add the chicken to the pan and cook until browned.")
+
+# Create a recipe
+chicken_recipe = Recipe("Chicken Stir-Fry")
+chicken_recipe.add_ingredient(ingredient1)
+chicken_recipe.add_ingredient(ingredient2)
+chicken_recipe.add_ingredient(ingredient3)
+chicken_recipe.add_ingredient(ingredient4)
+chicken_recipe.add_step(step1)
+chicken_recipe.add_step(step2)
+chicken_recipe.add_step(step3)
+
+# Create a cookbook
+my_cookbook = Cookbook()
+my_cookbook.add_recipe(chicken_recipe)
+
+# Display the cookbook
+print(my_cookbook)
